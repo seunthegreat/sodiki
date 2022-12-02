@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "./style";
 
-import { Navbar, Hero, Stats, Business,  PortfolioCalculator, Testimonials, Clients, FAQ, CTA, Footer } from './components';
+import { Navbar, Hero, Stats, Business,  PortfolioCalculator, Testimonials, Clients, FAQ, CTA, Footer } from './components/index';
 
 const App = () =>(
   <div className="bg-primary w-full overflow-hidden">
@@ -20,7 +20,7 @@ const App = () =>(
     <div className={`bg-primary ${styles.paddingX} ${styles.flexStart}`}>
       <div className={`${styles.boxWidth}`}>
         <Stats />
-        <Business /> 
+        <Business />
         <PortfolioCalculator />
         <Testimonials />
         <Clients />
