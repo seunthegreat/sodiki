@@ -55,7 +55,7 @@ export const feedback = [
   {
     id: "feedback-2",
     content:
-      "Making the best decisions sometimes starts with using the right tool",
+      "Making the best decisions sometimes starts with using the right tool. Luckily I made the best decision using this platform.",
     name: "Seun Abilawon",
     title: "Currency market Analyst",
     img: people02,
@@ -75,6 +75,11 @@ export const stats = [
     id: "stats-1",
     title: "Active Users",
     value: "20k+",
+  },
+  {
+    id: "stats-2",
+    title: "Trusted Clients",
+    value: "10k+",
   },
   {
     id: "stats-2",
