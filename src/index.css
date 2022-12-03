@@ -138,3 +138,22 @@
   background: rgba(255, 255, 255, 0.6);
   filter: blur(750px);
 }
+
+input[type='range'] {
+	-webkit-appearance: none;
+	height: 6px;
+	background: white;
+	border-radius: 5px;
+	background-image: linear-gradient(
+    300.81deg,
+    #def9fa -43.27%,
+    #bef3f5 -21.24%,
+    #9dedf0 12.19%,
+    #7de7eb 29.82%,
+    #5ce1e6 51.94%,
+    #33bbcf 90.29%
+  );
+	background-repeat: no-repeat;
+  cursor: pointer;
+}
+
