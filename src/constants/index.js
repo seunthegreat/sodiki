@@ -1,4 +1,4 @@
-import { people01, people02, people03, facebook, instagram, linkedin, twitter, eNaira, binance, coinbase, dropbox, send, shield, star  } from "../assets";
+import { people01, people02, people03, facebook, instagram, linkedin, twitter, eNaira, binance, coinbase, send, shield, star  } from "../assets";
 
 export const navLinks = [
   {
@@ -82,12 +82,12 @@ export const stats = [
     value: "10k+",
   },
   {
-    id: "stats-2",
+    id: "stats-3",
     title: "Trusted by Company",
     value: "430+",
   },
   {
-    id: "stats-3",
+    id: "stats-4",
     title: "AUM",
     value: "$932M+",
   },
@@ -194,10 +194,6 @@ export const clients = [
   {
     id: "client-3",
     logo: coinbase,
-  },
-  {
-    id: "client-4",
-    logo: dropbox,
   },
 ];
 

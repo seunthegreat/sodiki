@@ -21,11 +21,11 @@ const BarChart = ({data}) => {
   return (
   <div className='flex flex-col pb-5'>
     {datasetArr.map((data, index) => (
-      <AnimatePresence>
+      <AnimatePresence key={index}>
         <div key={index} className={`h-8 items-center flex flex-row justify-between w-full ${index !== 0 ? 'mt-2' : 'mt-10'}`}>
         {
           data.width !== 0 && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

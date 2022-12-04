@@ -1,160 +1,4 @@
-const sampleData = [
-    {
-        "_id": "638a5cca09cce9e4611e6893",
-        "Risk Score": "0",
-        "Nigerian Stocks": "18%",
-        "Foreign Stocks": "4%",
-        "Tech Stocks": "2%",
-        "Emerging Stocks": "7%",
-        "Nigerian Bonds": "35%",
-        "Commodities": "7%",
-        "Real Estate": "12%",
-        "T-Bills": "0%",
-        "Alternative": "0%",
-        "__v": 0
-    },
-    {
-        "_id": "638a5cca09cce9e4611e6894",
-        "Risk Score": "1",
-        "Nigerian Stocks": "20%",
-        "Foreign Stocks": "5%",
-        "Tech Stocks": "3%",
-        "Emerging Stocks": "7%",
-        "Nigerian Bonds": "35%",
-        "Commodities": "12%",
-        "Real Estate": "12%",
-        "T-Bills": "0%",
-        "Alternative": "0%",
-        "__v": 0
-    },
-    {
-        "_id": "638a5cca09cce9e4611e6895",
-        "Risk Score": "2",
-        "Nigerian Stocks": "23%",
-        "Foreign Stocks": "5%",
-        "Tech Stocks": "4%",
-        "Emerging Stocks": "7%",
-        "Nigerian Bonds": "35%",
-        "Commodities": "12%",
-        "Real Estate": "0%",
-        "T-Bills": "0%",
-        "Alternative": "0%",
-        "__v": 0
-    },
-    {
-        "_id": "638a5cca09cce9e4611e6896",
-        "Risk Score": "3",
-        "Nigerian Stocks": "26%",
-        "Foreign Stocks": "6%",
-        "Tech Stocks": "4%",
-        "Emerging Stocks": "7%",
-        "Nigerian Bonds": "35%",
-        "Commodities": "12%",
-        "Real Estate": "0%",
-        "T-Bills": "0%",
-        "Alternative": "0%",
-        "__v": 0
-    },
-    {
-        "_id": "638a5cca09cce9e4611e6897",
-        "Risk Score": "4",
-        "Nigerian Stocks": "29%",
-        "Foreign Stocks": "7%",
-        "Tech Stocks": "5%",
-        "Emerging Stocks": "6%",
-        "Nigerian Bonds": "35%",
-        "Commodities": "12%",
-        "Real Estate": "0%",
-        "T-Bills": "0%",
-        "Alternative": "0%",
-        "__v": 0
-    },
-    {
-        "_id": "638a5ccb09cce9e4611e6898",
-        "Risk Score": "5",
-        "Nigerian Stocks": "31%",
-        "Foreign Stocks": "8%",
-        "Tech Stocks": "6%",
-        "Emerging Stocks": "5%",
-        "Nigerian Bonds": "35%",
-        "Commodities": "12%",
-        "Real Estate": "0%",
-        "T-Bills": "0%",
-        "Alternative": "0%",
-        "__v": 0
-    },
-    {
-        "_id": "638a5ccb09cce9e4611e6899",
-        "Risk Score": "6",
-        "Nigerian Stocks": "35%",
-        "Foreign Stocks": "8%",
-        "Tech Stocks": "7%",
-        "Emerging Stocks": "3%",
-        "Nigerian Bonds": "35%",
-        "Commodities": "0%",
-        "Real Estate": "0%",
-        "T-Bills": "0%",
-        "Alternative": "0%",
-        "__v": 0
-    },
-    {
-        "_id": "638a5ccb09cce9e4611e689a",
-        "Risk Score": "7",
-        "Nigerian Stocks": "45%",
-        "Foreign Stocks": "13%",
-        "Tech Stocks": "12%",
-        "Emerging Stocks": "7%",
-        "Nigerian Bonds": "23%",
-        "Commodities": "0%",
-        "Real Estate": "0%",
-        "T-Bills": "0%",
-        "Alternative": "0%",
-        "__v": 0
-    },
-    {
-        "_id": "638a5ccb09cce9e4611e689b",
-        "Risk Score": "8",
-        "Nigerian Stocks": "45%",
-        "Foreign Stocks": "15%",
-        "Tech Stocks": "15%",
-        "Emerging Stocks": "9%",
-        "Nigerian Bonds": "16%",
-        "Commodities": "0%",
-        "Real Estate": "0%",
-        "T-Bills": "0%",
-        "Alternative": "0%",
-        "__v": 0
-    },
-    {
-        "_id": "638a5ccb09cce9e4611e689c",
-        "Risk Score": "9",
-        "Nigerian Stocks": "45%",
-        "Foreign Stocks": "18%",
-        "Tech Stocks": "17%",
-        "Emerging Stocks": "11%",
-        "Nigerian Bonds": "9%",
-        "Commodities": "0%",
-        "Real Estate": "0%",
-        "T-Bills": "0%",
-        "Alternative": "0%",
-        "__v": 0
-    },
-    {
-        "_id": "638a5ccb09cce9e4611e689d",
-        "Risk Score": "10",
-        "Nigerian Stocks": "45%",
-        "Foreign Stocks": "20%",
-        "Tech Stocks": "19%",
-        "Emerging Stocks": "14%",
-        "Nigerian Bonds": "2%",
-        "Commodities": "0%",
-        "Real Estate": "0%",
-        "T-Bills": "0%",
-        "Alternative": "0%",
-        "__v": 0
-    }
-];
-
+import PortfolioApi from "../api/portfolio";
 
 const calculateBarPercentage =  (x) => {
   //-- where formula (x/45) * 100--//
@@ -208,18 +52,39 @@ const getDatasetArray = (risk, portfolioArray) => {
   return dataset
 };
 
+const fetchPortfolioData = async (setIsLoading, setPortfolioData, setDataset) => {
+  let portfolioData = [];
+  let dataset = [];
+
+  try{
+    setIsLoading(true)
+    let response = await PortfolioApi.getAllPortfolios();
+    setIsLoading(false)
+    portfolioData = response.data.data;
+    dataset = Portfolio.getDataset(5, portfolioData)
+
+    setPortfolioData(portfolioData);
+    setDataset(dataset);
+
+  }catch (e){
+    console.log(e)
+  }
+}
+
 const Portfolio = {
   getBarPercentage : (x) => calculateBarPercentage(x),
   getBarWidth: (x) => calculateBarWidth(x),
   getDataset: (risk, portfolio) => getDatasetArray(risk, portfolio),
+  getPortfolioData: async (
+    setIsLoading, 
+    setPortfolioData, 
+    setDataset) => fetchPortfolioData(setIsLoading, setPortfolioData, setDataset)
 };
 
 const fullWidth = () => {
   if (window.innerWidth >= 400 && window.innerWidth < 620) return 160
   if (window.innerWidth >= 620 && window.innerWidth < 768) return 384
-  return 256
-}
-
-// console.log(fullWidth())
+  return 384
+};
 
 export default Portfolio;
