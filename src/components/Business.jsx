@@ -1,4 +1,4 @@
-import {apple, bill, google } from "../assets";
+import {apple, google } from "../assets";
 import styles, {layout} from "../style";
 import { Player } from '@lottiefiles/react-lottie-player';
 

@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import styles, { layout } from "../style";
 import Button from "./Button";
-import { Slider, RangeSlider } from 'rsuite';
 import BarChart from "./BarChart";
+import Portfolio from "../utils/portfolio";
 
-const portfolio = [
+const sampleData = [
   {
       "_id": "638a5cca09cce9e4611e6893",
       "Risk Score": "0",
@@ -159,68 +159,18 @@ const portfolio = [
       "Alternative": "0%",
       "__v": 0
   }
-]
+];
 
-const createStyledDataSet = (risk, portfolio) => {
-  let dataset = []
-  for(let i = 0; i < portfolio.length; i++){
-    if(risk == portfolio[i]["Risk Score"]) {
-      
-     
-      const allowed = ["Nigerian Stocks", "Foreign Stocks", "Tech Stocks", "Emerging Stocks",
-      "Nigerian Bonds", "Commodities", "Real Estate", "T-Bills", "Alternative" ];
-
-      const assetClasses =  allowed.reduce((obj, key) => (
-        { ...obj, [key]: portfolio[i][key] }), {});
-
-        
-        for (const [key, value] of Object.entries(assetClasses)) {
-
-          let allocationValue = value.substring(0, value.length - 1);
-         
-          let barPercentage = calculateBarPercentage(allocationValue);
-          let barWidth = determineBarWidth(barPercentage);
-          dataset.push(barWidth)
-        }
-    }
-  }
-
-  return dataset
-}
-
-const calculateBarPercentage = (x) => {
-  //-- where formula (x/45) * 100
-  let result = (parseInt(x)/45) * 100
-  return result;
-};
-
-const determineBarWidth = (x) => {
-  /**
-   * fixed with with tailwind configuration 
-   * w-24, w-32, w-40, w-48, w-64
-   *  where w-65 is max width i.e 100%
-   */
-  if (x == 100) return 'w-64';
-  if (x > 70 && x < 100 ) return 'w-44';
-  if (x <= 70 && x >= 50 ) return 'w-32';
-  if (x >= 30 && x < 50) return 'w-24';
-  if (x < 30 && x > 0) return 'w-14';
-  if (x == 0) return 0;
-  else return "out of range";
-}
-
-// console.log(createStyledDataSet(8,portfolio))
-
-
-
-// console.log(determineAssetAllocation(0, portfolio))
+const { getDataset } = Portfolio;
 
 const MIN = 0;
 const MAX = 10;
 
+const dataSet = getDataset(1, sampleData)
+
 const PortfolioCalculator = () => {
-  const [risk, setRisk] = useState(MIN);
-  const [data, setData] = useState(createStyledDataSet(0,portfolio))
+  const [risk, setRisk] = useState(5);
+  const [data, setData] = useState(dataSet)
 
   return (
     <section className={layout.section}>
@@ -234,7 +184,7 @@ const PortfolioCalculator = () => {
       </div>
       <div className={layout.sectionImg}>
       <div className='flex flex-row items-center justify-center py-[20px] px-4 rounded-[10px] w-full h-full static'>
-        <div className="w-96 bg-white shadow rounded py-[10px] px-4 justify-between items-center absolute top-[0] ">
+        <div className="flex-1 w-[85%] bg-white shadow rounded py-[10px] px-4 justify-between items-center absolute top-[0] ">
           <div className="flex-row flex justify-between items-center mb-2">
             <h4 className="font-medium">Risk Score: {risk} </h4>
             <h4 className="text-[12px] font-normal">Example Portfolio </h4>
@@ -246,14 +196,14 @@ const PortfolioCalculator = () => {
             value={risk}
             onChange={(e) => {
               setRisk(e.target.value);
-              setData(createStyledDataSet(e.target.value,portfolio));
+              setData(getDataset(e.target.value,sampleData));
             }}
             className="w-full" 
             id="customSlider" 
           />
         </div>
 
-        <div className='flex  mt-10 pt-[10px] px-8 bg-discount-gradient rounded-[10px] w-full h-full static'>
+        <div className='flex mt-10 items-center justify-center  pt-[10px] px-8 bg-discount-gradient rounded-[10px] w-full h-full'>
           <BarChart data={data}/>
         </div>
         

@@ -11,7 +11,7 @@ const Navbar = () => {
       <div className='flex flex-row items-center py-[6px] px-4 bg-discount-gradient rounded-[10px] mb-2'>
         <p className={`${styles.paragraph} ml-2 text-[14px]`}>
           <span className='text-white'>{""}</span>Disclaimer | 
-          <span className='text-white'> All Investments Strategies and Investments A</span>
+          <span className='text-white'> All Investments Strategies and Investments</span>
           <span className='text-white'>  {" "}</span>
           <span className='text-white'>{""}</span>Involve loss.
         </p>

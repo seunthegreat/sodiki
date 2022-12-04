@@ -1,4 +1,4 @@
-import { people01, people02, people03, facebook, instagram, linkedin, twitter, airbnb, binance, coinbase, dropbox, send, shield, star  } from "../assets";
+import { people01, people02, people03, facebook, instagram, linkedin, twitter, eNaira, binance, coinbase, dropbox, send, shield, star  } from "../assets";
 
 export const navLinks = [
   {
@@ -148,8 +148,8 @@ export const footerLinks = [
     title: "Partner",
     links: [
       {
-        name: "Our Partner",
-        link: "https://www.sodiki.com/our-partner/",
+        name: "Our Partners",
+        link: "https://www.sodiki.com/our-partners/",
       },
       {
         name: "Become a Partner",
@@ -185,7 +185,7 @@ export const socialMedia = [
 export const clients = [
   {
     id: "client-1",
-    logo: airbnb,
+    logo: eNaira,
   },
   {
     id: "client-2",
@@ -200,3 +200,7 @@ export const clients = [
     logo: dropbox,
   },
 ];
+
+export const labels = ["Nigerian Stocks", "Foreign Stocks", "Tech Stock", "Emerging Stocks","Nigerian Bonds", "Commodities", "Real Estate", "T-Bills", "Alternative" ];
+
+export const API_SERVER = "http://13.233.95.164:8080";
