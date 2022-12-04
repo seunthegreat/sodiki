@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "aws s3 sync build/ s3://sodiki.com --acl public-read"
   },
   "dependencies": {
     "@lottiefiles/lottie-player": "^1.6.1",

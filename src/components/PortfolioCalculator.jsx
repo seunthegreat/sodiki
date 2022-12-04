@@ -3,11 +3,9 @@ import styles, { layout } from "../style";
 import Button from "./Button";
 import BarChart from "./BarChart";
 import Portfolio from "../utils/portfolio";
-import PortfolioApi from "../api/portfolio";
 import { Player } from '@lottiefiles/react-lottie-player';
 
-
-const { getDataset, getPortfolioData } = Portfolio;
+const { getDataset, getPortfolioData } = Portfolio; //-->Functions
 
 const MIN = 0;
 const MAX = 10;

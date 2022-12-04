@@ -49,7 +49,7 @@ export const feedback = [
     content:
       "Time is of the essence, and Sodiki has been that friend in need",
     name: "Moses David",
-    title: "Software Engineer",
+    title: "Kofo Badmus",
     img: people01,
   },
   {
@@ -64,7 +64,7 @@ export const feedback = [
     id: "feedback-3",
     content:
       "Investing does not have to be rocket science, Sodiki taught me that",
-    name: "Kofo Badmus",
+    name: "Software Engineer",
     title: "Entrepreneur",
     img: people03,
   },
